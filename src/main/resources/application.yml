@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: "clush-test"
+
+  datasource:
+    url: jdbc:mysql://localhost:4306/clush_test_calender?characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create
