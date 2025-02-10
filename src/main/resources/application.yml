@@ -3,9 +3,19 @@ spring:
     name: "clush-test"
 
   datasource:
-    url: jdbc:mysql://localhost:4306/clush_test_calender?characterEncoding=UTF-8&serverTimezone=UTC
+    url: jdbc:mysql://localhost:4306/clush_test_calendar?characterEncoding=UTF-8&serverTimezone=UTC
     username: root
     password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: create
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
+    generate-ddl: false
+    show-sql: true
+    properties:
+      hibernate.hibernate.format_sql: true
+
+server:
+  port: 8093

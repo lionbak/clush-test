@@ -1,10 +1,11 @@
 package com.jw.clushtest.calendar.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.jw.clushtest.calendar.config.UUIDConfig;
+import jakarta.persistence.PrePersist;
 import lombok.*;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -12,7 +13,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class CalendarEventDTO {
-    private String id;
+
+    private UUID id;
     private String title;
     private String description;
 

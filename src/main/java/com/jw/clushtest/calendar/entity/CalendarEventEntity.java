@@ -1,14 +1,14 @@
 package com.jw.clushtest.calendar.entity;
 
-import com.jw.clushtest.calendar.config.UUIDConfig;
+import com.jw.clushtest.calendar.config.UUIDConverter;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Table(name = "event")
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -16,8 +16,9 @@ import java.time.LocalDateTime;
 public class CalendarEventEntity {
 
     @Id
-    @Builder.Default
-    private byte[] id = UUIDConfig.genrateUUID();
+    @Column(columnDefinition = "BINARY(16)")
+    @Convert(converter = UUIDConverter.class)
+    private UUID id;
 
     @Column(nullable = false)
     private String title;
@@ -30,5 +31,6 @@ public class CalendarEventEntity {
 
     @Column(nullable = false)
     private LocalDateTime endDate;
+
 
 }
