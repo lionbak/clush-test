@@ -3,11 +3,16 @@ package com.jw.clushtest.calendar.service;
 import com.jw.clushtest.calendar.config.CalendarEventMapper;
 import com.jw.clushtest.calendar.config.UUIDConfig;
 import com.jw.clushtest.calendar.dto.CalendarEventDTO;
+import com.jw.clushtest.calendar.entity.CalendarEventEntity;
 import com.jw.clushtest.calendar.repository.CalendarEventRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -63,5 +68,22 @@ public class CalendarEventService {
     @Transactional
     public void deleteEvent(UUID id) {
         calendarEventRepository.deleteById(id);
+    }
+
+
+    //지정 월 일정 조회
+    @Transactional
+    public List<CalendarEventDTO> getEventsForCurrentMonth() {
+        LocalDate today = LocalDate.now();
+        LocalDate startOfMonth = today.withDayOfMonth(1);
+        LocalDate endOfMonth = today.with(TemporalAdjusters.lastDayOfMonth());
+
+        LocalDateTime startDate = startOfMonth.atStartOfDay();
+        LocalDateTime endDate = endOfMonth.atTime(LocalTime.MAX);
+
+        return calendarEventRepository.findByStartDateBetween(startDate, endDate)
+                .stream()
+                .map(mapper::toDTO)
+                .collect(Collectors.toList());
     }
 }
