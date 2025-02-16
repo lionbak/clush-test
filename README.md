@@ -44,10 +44,10 @@ IDE에서 ClushTestApplication RUN
 
 
 ## 주력으로 사용한 라이브러리
-- mapstruct : entity<=>DTO 코드 추가에 대한 유연성을 확보하기 위해 mapstruct mapper를 사용하였습니다.
-- lombok : 생성자, 메서드에 대한 반복적 코드를 간결하게 하기 위해 적용하였습니다.
-- java-uuid-generator : Timestemp기반의 UUIDv6를 사용하기 위해 사용하였습니다.
-- zxing : QR코드 공유 API에서 QR코드를 생성하기 위해 적용하였습니다.
+- mapstruct : Entity ↔ DTO 변환을 자동화하기 위해 사용하였습니다. 수동으로 변환 메서드를 작성하는 불필요한 코드를 줄이고, 유지보수를 용이하게 하기 위해 적용하였습니다.
+- lombok : 생성자, 메서드에 대한 반복적 코드를 간결하게 하고, 유지보수를 용이하게 하기 위해 적용하였습니다.
+- java-uuid-generator : Timestemp기반의 UUIDv6를 사용하기 위해 사용하였습니다. 무작위의 `UUID.randomUUID` 방식보다 정렬이 가능하여 순차적인 UUID를 적용합니다.
+- zxing : QR코드 공유 API에서 QR코드 이미지를 생성하기 위해 적용하였습니다.
 
 ## API명세
 ## 캘린더
