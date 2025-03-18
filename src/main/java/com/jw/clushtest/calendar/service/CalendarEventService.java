@@ -5,6 +5,7 @@ import com.jw.clushtest.calendar.config.UUIDConfig;
 import com.jw.clushtest.calendar.dto.CalendarEventDTO;
 import com.jw.clushtest.calendar.entity.CalendarEventEntity;
 import com.jw.clushtest.calendar.repository.CalendarEventRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,7 +38,7 @@ public class CalendarEventService {
     public CalendarEventDTO getEventById(UUID id) {
         return calendarEventRepository.findById(id)
                 .map(mapper::toDTO)
-                .orElseThrow(() -> new IllegalArgumentException("일정을 찾을 수 없습니다."));
+                .orElseThrow(() -> new EntityNotFoundException("일정을 찾을 수 없습니다."));
     }
 
     //일정 생성
